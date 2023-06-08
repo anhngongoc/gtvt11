@@ -75,14 +75,12 @@ public class GameJPanelInGame extends JPanel implements Config, ActionListener {
 			x[z] = 50;
 			y[z] = 50;
 		}
-	
+
 		locateApple();
 		System.out.println("DELAY" + DELAY);
 		timer = new Timer(DELAY, this);
 		timer.start();
 	}
-
-	
 
 	private void locateApple() {
 		apple_x = random.nextInt(SCREEN_WITH / DOT_SIZE) * DOT_SIZE;
@@ -97,14 +95,14 @@ public class GameJPanelInGame extends JPanel implements Config, ActionListener {
 	}
 
 	public void doDraw(Graphics g) {
-		
+
 		String point = " point :   " + DELAY + " :" + String.valueOf(dots - 3);
 		if (InGame) {
 			Map(g);
 			g.setColor(Color.green);
 			g.fillRect(apple_x, apple_y, DOT_SIZE, DOT_SIZE);
 			for (int z = 0; z < dots; z++) {
-				System.out.println("MAP" +  x[z]);
+				System.out.println("MAP" + x[z]);
 				int xValue = x[z];
 				int yValue = y[z];
 				if (z == 0) {
@@ -143,7 +141,8 @@ public class GameJPanelInGame extends JPanel implements Config, ActionListener {
 		}
 
 	}
-		private void Map(Graphics g) {
+
+	private void Map(Graphics g) {
 //			for(int z = 0; z < ALL_DOTS; z++) {
 //				
 //				if(x[z] == 0 || y[z] == 0) {
@@ -154,8 +153,8 @@ public class GameJPanelInGame extends JPanel implements Config, ActionListener {
 //				
 //			}
 //			
-				
-		}
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -177,23 +176,27 @@ public class GameJPanelInGame extends JPanel implements Config, ActionListener {
 				}
 			}
 			if (y[0] >= SCREEN_HEIGHT) {
-//			inGame = false;
-				y[0] = DOT_SIZE;
+				InGame = false;
+				EndGame = true;
+				// y[0] = DOT_SIZE;
 			}
 
 			if (y[0] < 0) {
-//			inGame = false;
-				y[0] = SCREEN_HEIGHT;
+				InGame = false;
+				EndGame = true;
+				// y[0] = SCREEN_HEIGHT;
 			}
 
 			if (x[0] >= SCREEN_WITH) {
-				x[0] = DOT_SIZE;
-//			inGame = false;
+				// x[0] = DOT_SIZE;
+				InGame = false;
+				EndGame = true;
 			}
 
 			if (x[0] < 0) {
-				x[0] = SCREEN_WITH;
-//			inGame = false;
+				// x[0] = SCREEN_WITH;
+				InGame = false;
+				EndGame = true;
 			}
 
 			if (!InGame) {
